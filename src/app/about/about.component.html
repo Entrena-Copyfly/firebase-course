@@ -7,7 +7,29 @@
        src="https://angular-university.s3-us-west-1.amazonaws.com/course-images/firebase-course-1.jpg">
 
 
-    <button mat-raised-button class="upload-btn" color="primary" (click)="uploadData()">Populate Database</button>
+  <button mat-raised-button class="upload-btn" color="primary" (click)="uploadData()">Populate Database</button>
+
+  <button mat-raised-button class="" color="accent" (click)="onReadDoc()">Read Document</button>
+  
+  <button mat-raised-button class="" color="accent" (click)="onReadCollection()">See list of courses</button>
+  
+  <button mat-raised-button class="" color="accent" (click)="onReadAllLesssons()">Read all of lessons</button>
+
+  <div *ngIf="course$ | async as course; else loading">
+    <h1>{{ course.description }}</h1>
+    <p>Bio: {{ course.longDescription }}</p>
+  </div>
+
+  <div *ngFor="let lesson of lessons">
+    <div class="lesson">
+      <h3>{{ lesson.description }}</h3>
+      <p>Duración: {{ lesson.duration }}</p>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
 
 </div>
 
